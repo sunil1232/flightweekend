@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>flyweekend</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- One -->
+					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+						<div class="content">
+							<body>
+								<h1>flyweekend</h1>
+								<h2>
+								
+									Enter an airport, pick a weekend, <b>find the cheapest flights!</b>
+
+								</h2>
+								<form id="flightForm">
+									<label for="airportCode">Enter Airport Code: eg LGW</label>
+									<input type="text" id="airportCode" name="airportCode" required>
+									<br><br>
+									<label for="weekend">Choose Weekend:</label>
+									<select id="weekend" name="weekend">
+										<option value="this">This Weekend</option>
+										<option value="next">Next Weekend</option>
+									</select>
+									<br><br>
+									<button type="submit">Search Flights</button>
+								</form>
+							
+								<script>
+									document.getElementById('flightForm').addEventListener('submit', function(event) {
+										event.preventDefault();
+										
+										let airportCode = document.getElementById('airportCode').value.toUpperCase();
+										let weekendChoice = document.getElementById('weekend').value;
+							
+										let today = new Date();
+										let nextFriday, nextSunday;
+							
+										if (weekendChoice === 'this') {
+											nextFriday = new Date(today.setDate(today.getDate() + (5 - today.getDay() + 7) % 7));
+											nextSunday = new Date(today.setDate(nextFriday.getDate() + 2));
+										} else {
+											nextFriday = new Date(today.setDate(today.getDate() + (5 - today.getDay() + 7) % 7 + 7));
+											nextSunday = new Date(today.setDate(nextFriday.getDate() + 2));
+										}
+							
+										let formatDate = (date) => {
+											let year = String(date.getFullYear()).slice(-2); // Get last two digits of the year
+											let month = String(date.getMonth() + 1).padStart(2, '0');
+											let day = String(date.getDate()).padStart(2, '0');
+											return `${year}${month}${day}`;
+										}
+							
+										let fridayDate = formatDate(nextFriday);
+										let sundayDate = formatDate(nextSunday);
+							
+										let url = `https://www.skyscanner.net/transport/flights-from/${airportCode}/${fridayDate}/${sundayDate}/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false`;
+										
+										window.location.href = url;
+									});
+								</script>
+							</body>
+							<p class="major">Simply enter the airport code you would like to depart from and which weekend you would like to fly. Leave the searching to us as we find the cheapest flights for you to enjoy...</p>
+							<ul class="actions stacked">
+								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/test.jpg" alt="" />
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
+						<div class="content">
+							<h2>No sign-up, no hassle</h2>
+							<p>We don't want your e-mail address or phone number. Use this service free of charge.</p>
+							<ul class="actions stacked">
+								<li><a href="#" class="button">Learn More</a></li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/sand.jpg" alt="" />
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+						<div class="content">
+							<h2>Airport code?</h2>
+							<p>Google your desired airport to easily find it's three lettered code.</p>
+							<ul class="actions stacked">
+								<li><a href="#" class="button">Learn More</a></li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/plane.jpg" alt="" />
+						</div>
+					</section>
+
+				<!-- Four -->
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+						<div class="content">
+							<h2>About us</h2>
+							<p>At flyweekend, we have a passion for travel. We also love a good bargain! This tool helps you find chepeast flights from a given airport to various locations. We made this website for that sole purpose, nothing else. </p>
+							<ul class="actions stacked">
+								<li><a href="#" class="button">Learn More</a></li>
+							</ul>
+						</div>
+						<div class="image">
+							<img src="images/mountain.jpg" alt="" />
+						</div>
+					</section>
+
+				<!-- Five -->
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<h2>flyweekend</h2>
+							<p>Seize your weekend.</p>
+						</div>
+
+						
+				
+
+				
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
